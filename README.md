@@ -1,2 +1,2 @@
-# ga4
+# ga4-lighthouse
 This
