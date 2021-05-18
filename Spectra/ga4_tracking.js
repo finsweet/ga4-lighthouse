@@ -45,9 +45,9 @@
     // Listener for all classes that we want to do tracking on.
     $(selectors).on('click', (event) => {
         // check if cookies are allowed
-    	//if (!window.Optanon.IsAlertBoxClosedAndValid() || Cookies.get('entry_point') === undefined){
-        //  return
-        //}
+    	  if (!window.Optanon.IsAlertBoxClosedAndValid() || Cookies.get('entry_point') === undefined){
+          return
+        }
         // Find the class that was clicked.
       	let current_class = all_classnames[0]
         let full_classname = '.'+event.currentTarget.classList.value.replaceAll(' ', ' .')
