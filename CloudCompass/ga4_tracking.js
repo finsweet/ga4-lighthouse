@@ -313,8 +313,7 @@ $(document).ready(() => {
       let time_string = `${hrmn}`;
       gtag("event", "start_point", {
         value: 1,
-        date: date_string,
-        time: time_string,
+        date: new Date().toString(),
         userid: uid,
         browser,
         website: "Cloud Compass",
@@ -326,7 +325,7 @@ $(document).ready(() => {
 
     // track ad campaingns
     let url = new URL(window.location.href);
-    let c = url.searchParams.get("utm_campaign");
+    let c = url.searchParams.get("utm_source");
     if (c) {
       gtag("event", "ad_campaign", {
         value: 1,
