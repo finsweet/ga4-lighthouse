@@ -180,6 +180,7 @@ function track_clicks(click_metadata, action_metadata, event) {
     if (action === "file_download") {
       gtag("event", "file_download", {
         userid: Cookies.get("userid"),
+        transaction_id: uuidv4(),
         elementName: payload["elementName"],
         deviceType: get_device(),
         browser,
