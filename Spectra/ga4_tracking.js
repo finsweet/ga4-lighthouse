@@ -300,8 +300,8 @@ $(document).ready(async () => {
                               term: url.searchParams.get("utm_term"),
                               utm_content: url.searchParams.get("utm_content"),
                               deviceType: get_device()});
+          }
         }
-      }
 
       
 

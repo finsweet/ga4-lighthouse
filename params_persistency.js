@@ -5,6 +5,7 @@ $(document).ready( () => {
           'utm_source',
           'utm_campaign',
           'utm_content',
+          'utm_id',
           'utm_term'
       ]
   // Loop through all links 
