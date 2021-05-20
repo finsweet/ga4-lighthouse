@@ -155,6 +155,15 @@ function track_clicks(click_metadata, action_metadata, event) {
       }
     }
 
+    // Add search_query to parameter if needed
+    if (payload["type"].toLowerCase().includes("search")) {
+      // special code for lighouse dropdown
+      let openDropdown = $(event.currentTarget).attr('aria-expanded')
+      if(openDropdown === "false"){payload["elementName"] = 'searchOpen'}
+      else{payload["elementName"] = 'searchClose'}
+      payload['search_query'] = $('.element_name_class').closest('input').val()
+    }
+
     // logic for detecting if a click is a conversion
     action_keys = Object.keys(action_metadata);
     let action = "";
@@ -327,7 +336,7 @@ $(document).ready(() => {
     // track ad campaingns
     let url = new URL(window.location.href);
     let c = url.searchParams.get("utm_source");
-    if (c) {
+    if (c  && Cookies.get("userid") !== undefined) {
       gtag("event", "ad_campaign", {
         value: 1,
         userid: uid,
@@ -347,6 +356,23 @@ $(document).ready(() => {
       });
     }
   } //end of function set up
+
+  // track search
+  if (window.location.href.includes("search?") && Cookies.get("userid") !== undefined) {
+    let url = new URL(window.location.href);
+    gtag("event", "site_search", {
+      value: 1,
+      userid: Cookies.get("userid"),
+      browser,
+      session: Cookies.get("session_num"),
+      website: "Cloud Compass",
+      pageUrl: window.location.href.split("?")[0],
+      search_query: url.searchParams.get("query"),
+      generate_lead: false,
+      entry_point: Cookies.get("entry_point"),
+      deviceType: get_device(),
+    });
+  }
 
   /** scroll tracking **/
   let scrollPercent = 0;
