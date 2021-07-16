@@ -6,7 +6,8 @@ $(document).ready( () => {
           'utm_campaign',
           'utm_content',
           'utm_id',
-          'utm_term'
+          'utm_term',
+          'gclid'
       ]
   // Loop through all links 
   let links = document.querySelectorAll('a');
