@@ -22,7 +22,9 @@ window.addEventListener("load", function () {
   for (let index = 0; index < utm_params.length; index++) {
     let param = utm_params[index];
     let val = urlParams.get(param);
-    utm_query_string = utm_query_string + `${param}=${val}&`;
+    if (val) {
+      utm_query_string = utm_query_string + `${param}=${val}&`;
+    }
   }
   //remove trailing &
   utm_query_string = utm_query_string.slice(0, -1);
